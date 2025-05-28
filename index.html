@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Computer Science Student</title>
+    <title>Benjamin Jones - Computer Science Student</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #228B22 0%, #006400 100%);
             color: white;
             overflow-x: hidden;
         }
@@ -24,7 +24,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #228B22 0%, #006400 100%);
         }
 
         .typing-container {
@@ -348,7 +348,7 @@
     <script>
         // Typing animation for the name
         const nameElement = document.getElementById('typed-name');
-        const name = "Your Name"; // Replace this with your actual name
+        const name = "Benjamin Jones"; // Replace this with your actual name
         let i = 0;
 
         function typeWriter() {
@@ -356,10 +356,10 @@
                 nameElement.innerHTML = name.substring(0, i + 1) + '<span class="cursor">|</span>';
                 i++;
                 setTimeout(typeWriter, 150);
-            } else {
+            } //else {
                 // Keep the cursor blinking after typing is complete
-                nameElement.innerHTML = name + '<span class="cursor">|</span>';
-            }
+               // nameElement.innerHTML = name + '<span class="cursor">|</span>';
+          //  }
         }
 
         // Start typing animation when page loads
