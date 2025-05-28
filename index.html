@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benjamin Jones - Computer Science Student</title>
+    <title>Your Name - Computer Science Student</title>
     <style>
         * {
             margin: 0;
@@ -12,9 +12,9 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #228B22 0%, #006400 100%);
-            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            background: linear-gradient(135deg, #29573a 0%, #385d39 100%);
+            color: rgb(255, 255, 255);
             overflow-x: hidden;
         }
 
@@ -24,7 +24,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            background: linear-gradient(135deg, #228B22 0%, #006400 100%);
+            background: linear-gradient(135deg, #29573a 0%, #29573a 100%);
         }
 
         .typing-container {
@@ -35,7 +35,7 @@
         .typed-name {
             font-size: 4rem;
             font-weight: bold;
-            font-family: Arial, sans-serif;
+            font-family: 'Courier New', Courier, monospace;
             margin-bottom: 1rem;
             min-height: 5rem;
             display: flex;
@@ -45,7 +45,7 @@
 
         .cursor {
             display: inline-block;
-            background-color: white;
+            background-color: rgb(65, 65, 65);
             width: 3px;
             animation: blink 1s infinite;
         }
@@ -58,9 +58,8 @@
         .subtitle {
             font-size: 1.5rem;
             opacity: 0;
-            animation: fadeInUp 1s ease forwards;
-            animation-delay: 3s;
             margin-bottom: 2rem;
+            transition: opacity 0.3s;
         }
 
         .cta-buttons {
@@ -244,6 +243,47 @@
             transform: translateY(-3px);
         }
 
+        .typed-name, .subtitle {
+            transition: opacity 2.9s ease, transform 2.9s ease;
+        }
+
+        .fade-out {
+            opacity: 0 !important;
+            transition: opacity .9s ease;
+        }
+        .fade-in-top-left {
+            opacity: 1 !important;
+            transition: opacity 2.9s ease;
+        }
+        .top-left {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            display: inline-block;
+            opacity: 0; /* Initially hidden */
+            background: none;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+            z-index: 1000;
+        }
+        #top-nav-buttons {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 40px;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 2.7s ease;
+        }
+        #top-nav-buttons.fade-in-top-left {
+            opacity: 1;
+        }
+
         @media (max-width: 768px) {
             .typed-name {
                 font-size: 2.5rem;
@@ -269,14 +309,15 @@
             <div class="shape">🚀</div>
         </div>
         
-        <div class="typing-container">
+        <div class="typing-container" id="typing-container">
             <div class="typed-name" id="typed-name"></div>
-            <div class="subtitle">Computer Science Student & Aspiring Developer</div>
-            <div class="cta-buttons">
-                <a href="#about" class="btn">About Me</a>
-                <a href="#projects" class="btn">Projects</a>
-                <a href="#contact" class="btn">Contact</a>
-            </div>
+            <div class="subtitle" id="subtitle">Computer Science Student & Aspiring Developer</div>
+        </div>
+        <!-- Top nav buttons, initially hidden -->
+        <div id="top-nav-buttons">
+            <a href="#about" class="btn">About Me</a>
+            <a href="#projects" class="btn">Projects</a>
+            <a href="#contact" class="btn">Contact</a>
         </div>
     </section>
 
@@ -284,7 +325,7 @@
         <h2 class="section-title">About Me</h2>
         <div class="grid">
             <div class="card">
-                <h3>🎓 Education</h3>
+                <h3>Education</h3>
                 <p>Currently pursuing a Computer Science degree, building a strong foundation in programming, algorithms, and software development principles.</p>
             </div>
             <div class="card">
@@ -346,20 +387,60 @@
     </section>
 
     <script>
-        // Typing animation for the name
+        // Typing animation for the name and description
         const nameElement = document.getElementById('typed-name');
-        const name = "Benjamin Jones"; // Replace this with your actual name
+        const subtitleElement = document.getElementById('subtitle');
+        const typingContainer = document.getElementById('typing-container');
+        const topNavButtons = document.getElementById('top-nav-buttons');
+        const name = "Benjamin Jones";
+        const description = "Computer Science Student & Aspiring Developer";
         let i = 0;
+        let j = 0;
 
         function typeWriter() {
             if (i < name.length) {
                 nameElement.innerHTML = name.substring(0, i + 1) + '<span class="cursor">|</span>';
                 i++;
                 setTimeout(typeWriter, 150);
-            } //else {
-                // Keep the cursor blinking after typing is complete
-               // nameElement.innerHTML = name + '<span class="cursor">|</span>';
-          //  }
+            } else {
+                nameElement.innerHTML = name;
+                subtitleElement.innerHTML = '';
+                subtitleElement.style.opacity = '1';
+                setTimeout(typeDescription, 50);
+            }
+        }
+
+        function typeDescription() {
+            if (j < description.length) {
+                subtitleElement.innerHTML = description.substring(0, j + 1) + '<span class="cursor">|</span>';
+                j++;
+                setTimeout(typeDescription, 50);
+            } else {
+                subtitleElement.innerHTML = description;
+                // Fade out typing container
+                setTimeout(() => {
+                    typingContainer.classList.add('fade-out');
+                    setTimeout(() => {
+                        typingContainer.style.display = 'none';
+                        // Create and fade in top-left name/description
+                        const topLeftContainer = document.createElement('div');
+                        topLeftContainer.classList.add('top-left');
+                        topLeftContainer.innerHTML = `
+                            <div>${name}</div>
+                            <div style="font-size: 1rem; font-weight: normal;">${description}</div>
+                        `;
+                        document.body.appendChild(topLeftContainer);
+                        // Fade in both name/desc and nav buttons together
+                        setTimeout(() => {
+                            topLeftContainer.classList.add('fade-in-top-left');
+                            topNavButtons.style.display = 'block';
+                            setTimeout(() => {
+                                topNavButtons.classList.add('fade-in-top-left');
+                            }, 10);
+                        }, 10);
+                    }, 700); // Wait for fade-out to complete (0.7s)
+                }, 300); // Delay before fade-out
+            }
         }
 
         // Start typing animation when page loads
