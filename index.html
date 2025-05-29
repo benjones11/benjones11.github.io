@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Computer Science Student</title>
+    <title>Benjamin Jones - Computer Science Student</title>
     <style>
         * {
             margin: 0;
@@ -18,13 +18,73 @@
             overflow-x: hidden;
         }
 
+        body, html {
+            height: 100%;
+        }
+
+        .split-container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .left-static {
+            width: 400px;
+            min-width: 300px;
+            max-width: 500px;
+            background: linear-gradient(135deg, #29573a 0%, #385d39 100%);
+            border-right: 3px solid #b2c7b8;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 40px 30px 30px 30px;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .left-static.fade-in {
+            opacity: 1;
+        }
+
+        .left-static .top-left {
+            position: static;
+            left: unset;
+            top: unset;
+            margin-bottom: 20px;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        .left-static .top-left.fade-in {
+            opacity: 1;
+        }
+
+        .left-static img {
+            margin-top: 50px;
+            max-width: 290px;
+            width: 100%;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .right-interactive {
+            flex: 1;
+            overflow-y: auto;
+            background: linear-gradient(135deg, #385d39 0%, #29573a 100%);
+            position: relative;
+        }
+
         .hero-section {
             height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            background: linear-gradient(135deg, #29573a 0%, #29573a 100%);
+            background: none;
         }
 
         .typing-container {
@@ -203,6 +263,15 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+        .skill-education {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: left;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
 
         .skill-item:hover {
             background: rgba(255, 255, 255, 0.2);
@@ -284,6 +353,24 @@
             opacity: 1;
         }
 
+        @media (max-width: 900px) {
+            .split-container {
+                flex-direction: column;
+            }
+            .left-static {
+                width: 100vw;
+                max-width: 100vw;
+                min-width: 0;
+                border-right: none;
+                border-bottom: 3px solid #b2c7b8;
+                align-items: center;
+                padding: 30px 10px 10px 10px;
+            }
+            .right-interactive {
+                min-height: 60vh;
+            }
+        }
+
         @media (max-width: 768px) {
             .typed-name {
                 font-size: 2.5rem;
@@ -302,90 +389,88 @@
     </style>
 </head>
 <body>
-    <section class="hero-section">
-        <div class="floating-shapes">
-            <div class="shape">⚡</div>
-            <div class="shape">💻</div>
-            <div class="shape">🚀</div>
+    <div class="split-container" style="opacity:0; transition: opacity 1s;">
+        <div class="left-static">
+            <div id="static-profile"></div>
+            <p>I think therefore I am</p>
         </div>
-        
-        <div class="typing-container" id="typing-container">
-            <div class="typed-name" id="typed-name"></div>
-            <div class="subtitle" id="subtitle">Computer Science Student & Aspiring Developer</div>
+        <div class="right-interactive">
+            <section id="about" class="content-section">
+                <h2 class="section-title">Education</h2>
+                <div class="grid">
+                    <!----
+                    <div class="card">
+                        <h3>Education</h3>
+                        <p>Currently pursuing a Computer Science degree, building a strong foundation in programming, algorithms, and software development principles.</p>
+                    </div>
+                
+                    <div class="card">
+                        <h3>💡 Passion</h3>
+                        <p>Passionate about technology and innovation. I love solving problems through code and creating solutions that make a difference.</p>
+                    </div>
+                
+                    <div class="card">
+                        <h3>🎯 Goals</h3>
+                        <p>Eager to gain hands-on experience through internships and projects. Looking forward to contributing to meaningful software development projects.</p>
+                    </div>
+                -->
+            <section class = "Education">
+               <div class = "skill-education">- Long Beach City College, 2021-22</div>
+               <div class = "skill-education">- East Los Angeles College, 2022-23</div>
+                <div class = "skill-education">- California State University, San Marcos, 2023-Present</div>
+                </div>
+            </section>
+            
+            <section class="content-section">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">Java</div>
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">HTML/CSS</div>
+                    <div class="skill-item">Git</div>
+                    <div class="skill-item">SQL</div>
+                    <div class="skill-item">Data Structures</div>
+                    <div class="skill-item">Algorithms</div>
+                </div>
+            </section>
+            <section id="projects" class="content-section">
+                <h2 class="section-title">Projects</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>📱 Personal Website</h3>
+                        <p>Built this interactive portfolio website using HTML, CSS, and JavaScript with modern animations and responsive design.</p>
+                    </div>
+                    <div class="card">
+                        <h3>🎮 Coming Soon</h3>
+                        <p>Currently working on exciting projects that will showcase my growing skills in software development and problem-solving.</p>
+                    </div>
+                    <div class="card">
+                        <h3>📚 Academic Projects</h3>
+                        <p>Various coursework projects involving data structures, algorithms, and programming fundamentals that demonstrate my learning journey.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="contact" class="contact-section">
+                <div class="content-section">
+                    <h2 class="section-title">Let's Connect</h2>
+                    <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                        I'm always excited to connect with fellow developers, students, and industry professionals.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📧</a>
+                        <a href="#" class="social-link">💼</a>
+                        <a href="#" class="social-link">🐙</a>
+                        <a href="#" class="social-link">🐦</a>
+                    </div>
+                </div>
+            </section>
         </div>
-        <!-- Top nav buttons, initially hidden -->
-        <div id="top-nav-buttons">
-            <a href="#about" class="btn">About Me</a>
-            <a href="#projects" class="btn">Projects</a>
-            <a href="#contact" class="btn">Contact</a>
-        </div>
-    </section>
-
-    <section id="about" class="content-section">
-        <h2 class="section-title">About Me</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Education</h3>
-                <p>Currently pursuing a Computer Science degree, building a strong foundation in programming, algorithms, and software development principles.</p>
-            </div>
-            <div class="card">
-                <h3>💡 Passion</h3>
-                <p>Passionate about technology and innovation. I love solving problems through code and creating solutions that make a difference.</p>
-            </div>
-            <div class="card">
-                <h3>🎯 Goals</h3>
-                <p>Eager to gain hands-on experience through internships and projects. Looking forward to contributing to meaningful software development projects.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="content-section">
-        <h2 class="section-title">Skills & Technologies</h2>
-        <div class="skills-grid">
-            <div class="skill-item">Python</div>
-            <div class="skill-item">Java</div>
-            <div class="skill-item">JavaScript</div>
-            <div class="skill-item">HTML/CSS</div>
-            <div class="skill-item">Git</div>
-            <div class="skill-item">SQL</div>
-            <div class="skill-item">Data Structures</div>
-            <div class="skill-item">Algorithms</div>
-        </div>
-    </section>
-
-    <section id="projects" class="content-section">
-        <h2 class="section-title">Projects</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>📱 Personal Website</h3>
-                <p>Built this interactive portfolio website using HTML, CSS, and JavaScript with modern animations and responsive design.</p>
-            </div>
-            <div class="card">
-                <h3>🎮 Coming Soon</h3>
-                <p>Currently working on exciting projects that will showcase my growing skills in software development and problem-solving.</p>
-            </div>
-            <div class="card">
-                <h3>📚 Academic Projects</h3>
-                <p>Various coursework projects involving data structures, algorithms, and programming fundamentals that demonstrate my learning journey.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact-section">
-        <div class="content-section">
-            <h2 class="section-title">Let's Connect</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 20px;">
-                I'm always excited to connect with fellow developers, students, and industry professionals.
-            </p>
-            <div class="social-links">
-                <a href="#" class="social-link">📧</a>
-                <a href="#" class="social-link">💼</a>
-                <a href="#" class="social-link">🐙</a>
-                <a href="#" class="social-link">🐦</a>
-            </div>
-        </div>
-    </section>
-
+    </div>
+    <div id="intro-animation" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:linear-gradient(135deg,#29573a 0%,#385d39 100%);display:flex;align-items:center;justify-content:center;flex-direction:column;">
+        <div class="typed-name" id="typed-name"></div>
+        <div class="subtitle" id="subtitle"></div>
+    </div>
     <script>
         // Typing animation for the name and description
         const nameElement = document.getElementById('typed-name');
@@ -399,51 +484,53 @@
 
         function typeWriter() {
             if (i < name.length) {
-                nameElement.innerHTML = name.substring(0, i + 1) + '<span class="cursor">|</span>';
+                document.getElementById('typed-name').innerHTML = name.substring(0, i + 1) + '<span class="cursor">|</span>';
                 i++;
                 setTimeout(typeWriter, 150);
             } else {
-                nameElement.innerHTML = name;
-                subtitleElement.innerHTML = '';
-                subtitleElement.style.opacity = '1';
+                document.getElementById('typed-name').innerHTML = name;
+                document.getElementById('subtitle').innerHTML = '';
+                document.getElementById('subtitle').style.opacity = '1';
                 setTimeout(typeDescription, 50);
             }
         }
 
         function typeDescription() {
             if (j < description.length) {
-                subtitleElement.innerHTML = description.substring(0, j + 1) + '<span class="cursor">|</span>';
+                document.getElementById('subtitle').innerHTML = description.substring(0, j + 1) + '<span class="cursor">|</span>';
                 j++;
                 setTimeout(typeDescription, 50);
             } else {
-                subtitleElement.innerHTML = description;
-                // Fade out typing container
+                document.getElementById('subtitle').innerHTML = description;
                 setTimeout(() => {
-                    typingContainer.classList.add('fade-out');
+                    // Fade out intro animation
+                    document.getElementById('intro-animation').style.transition = 'opacity 0.7s';
+                    document.getElementById('intro-animation').style.opacity = '0';
                     setTimeout(() => {
-                        typingContainer.style.display = 'none';
-                        // Create and fade in top-left name/description
-                        const topLeftContainer = document.createElement('div');
-                        topLeftContainer.classList.add('top-left');
-                        topLeftContainer.innerHTML = `
-                            <div>${name}</div>
-                            <div style="font-size: 1rem; font-weight: normal;">${description}</div>
+                        document.getElementById('intro-animation').style.display = 'none';
+                        // Fade in split-container (border, name, desc, photo, right side)
+                        const splitContainer = document.querySelector('.split-container');
+                        splitContainer.style.opacity = '1';
+                        // Add static profile content
+                        const staticProfile = document.getElementById('static-profile');
+                        staticProfile.innerHTML = `
+                            <div class="top-left">
+                                <div>${name}</div>
+                                <div style="font-size: 1rem; font-weight: normal;">${description}</div>
+                                <img src="basketballphoto.JPG" alt="Basketball player">
+                            </div>
                         `;
-                        document.body.appendChild(topLeftContainer);
-                        // Fade in both name/desc and nav buttons together
+                        // Fade in left side content (name, desc, photo)
                         setTimeout(() => {
-                            topLeftContainer.classList.add('fade-in-top-left');
-                            topNavButtons.style.display = 'block';
-                            setTimeout(() => {
-                                topNavButtons.classList.add('fade-in-top-left');
-                            }, 10);
+                            document.querySelector('.left-static').classList.add('fade-in');
+                            const topLeft = document.querySelector('.left-static .top-left');
+                            if (topLeft) topLeft.classList.add('fade-in');
                         }, 10);
-                    }, 700); // Wait for fade-out to complete (0.7s)
-                }, 300); // Delay before fade-out
+                    }, 700);
+                }, 700);
             }
         }
 
-        // Start typing animation when page loads
         window.addEventListener('load', function() {
             setTimeout(typeWriter, 500);
         });
