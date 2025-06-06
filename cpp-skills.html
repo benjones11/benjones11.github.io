@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills - Benjamin Jones</title>
+    <title>C++ Skills - Benjamin Jones</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -65,30 +65,35 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(129, 199, 132, 0.2);
         }
-        .skills-container {
+        .content-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            padding: 100px 20px;
         }
-        .skills-title {
+        .page-title {
             font-size: 2rem;
             font-weight: 900;
             color: #e8f5e9;
             margin-bottom: 30px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        .skills-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            font-size: 1rem;
+        .skills-section {
             background: rgba(255, 255, 255, 0.1);
             padding: 30px;
             border-radius: 8px;
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            width: 80%;
+            max-width: 800px;
+        }
+        .skills-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
         .skills-list li {
             margin-bottom: 18px;
@@ -103,27 +108,90 @@
             border: 1px solid #81c784;
             transform: translateX(5px);
         }
+        .repo-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+        }
+        .repo-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #81c784;
+        }
+        .repo-upload {
+            border: 2px dashed #81c784;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .repo-upload:hover {
+            background: rgba(129, 199, 132, 0.1);
+        }
+        .repo-upload i {
+            font-size: 2rem;
+            color: #81c784;
+            margin-bottom: 10px;
+        }
+        .repo-upload p {
+            margin: 10px 0;
+            color: #e8f5e9;
+        }
+        #fileInput {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div class="navbar">
         <div class="nav-links">
             <a href="index.html" class="nav-link">01. About</a>
-            <a href="skills.html" class="nav-link active">02. Skills</a>
+            <a href="skills.html" class="nav-link">02. Skills</a>
             <a href="projects.html" class="nav-link">03. Projects</a>
             <a href="contact.html" class="nav-link">04. Contact</a>
             <a href="resume.html" class="resume-btn">Resume</a>
         </div>
     </div>
-    <div class="skills-container">
-        <div class="skills-title">Skills</div>
-        <ul class="skills-list">
-            <li>HTML5 & CSS3</li>
-            <li>Git & GitHub</li>
-            <li><a href="cpp-skills.html" style="color: inherit; text-decoration: none; display: block;">C++</a></li>
-            <li>Java</li>
-            <li>Robotics</li>
-        </ul>
+    <div class="content-container">
+        <div class="page-title">C++ Skills</div>
+        
+        <div class="skills-section">
+            <h2 class="repo-title">C++ Expertise</h2>
+            <ul class="skills-list">
+                <li>Object-Oriented Programming</li>
+                <li>Memory Management</li>
+                <li>STL (Standard Template Library)</li>
+                <li>Multi-threading</li>
+                <li>Data Structures & Algorithms</li>
+                <li>Performance Optimization</li>
+            </ul>
+        </div>
+
+        <div class="repo-section">
+            <h2 class="repo-title">Code Repository</h2>
+            <div class="repo-upload" onclick="document.getElementById('fileInput').click()">
+                <i class="fas fa-code-branch"></i>
+                <p>Click to upload your C++ code repository</p>
+                <p style="font-size: 0.8rem; color: #81c784;">Supported formats: .zip, .rar, .git</p>
+                <input type="file" id="fileInput" accept=".zip,.rar,.git">
+            </div>
+        </div>
     </div>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                // Here you would typically handle the file upload
+                // For now, we'll just show an alert
+                alert('File selected: ' + file.name + '\nNote: This is a demo. In a real implementation, this would upload the file to a server.');
+            }
+        });
+    </script>
 </body>
 </html> 
