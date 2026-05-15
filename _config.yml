@@ -1,0 +1,8 @@
+title: Ben Jones
+email: benjaminlathjones@outlook.com
+email2: benjaminlathjones@yahoo.com
+description: "I am a Computer Scientist and Researcher."
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
